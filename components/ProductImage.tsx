@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-// Renders the first real image if present; otherwise a branded placeholder
-// so the layout looks intentional until photos are added.
 export default function ProductImage({
   src,
   alt,
@@ -30,18 +28,15 @@ export default function ProductImage({
   const num = String((index % 8) + 1).padStart(2, "0");
   return (
     <div
-      className={`relative overflow-hidden bg-ink paper-grid ${className}`}
+      className={`relative overflow-hidden blueprint ${className}`}
       aria-label={`${alt} — image coming soon`}
     >
-      <div className="absolute inset-0 blueprint opacity-90" />
-      <div className="absolute left-0 top-0 h-1.5 w-full safety-stripes opacity-80" />
+      <div className="h-[3px] w-full safety-stripes" />
       <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
-        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
-          {num} / Image coming soon
+        <span className="font-mono text-[10px] uppercase tracking-[0.20em] text-white/40">
+          {num} · Image coming soon
         </span>
-        <span className="mt-2 font-display text-base font-bold text-white/85">
-          {alt}
-        </span>
+        <span className="mt-2 font-display text-base font-bold text-white/70">{alt}</span>
       </div>
     </div>
   );

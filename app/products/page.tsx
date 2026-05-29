@@ -15,7 +15,7 @@ export default function ProductsPage() {
   return (
     <>
       <section className="blueprint text-white">
-        <div className="h-1.5 w-full safety-stripes" />
+        <div className="h-[3px] w-full safety-stripes" />
         <div className="container-x py-16 md:py-24">
           <SectionHeading
             light
@@ -27,9 +27,9 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-white">
+      <section className="border-t border-line bg-paper">
         <div className="container-x py-16 md:py-24">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {sortedCategories.map((c, i) => (
               <Reveal key={c.slug} delay={i * 50}>
                 <CategoryCard category={c} />
@@ -37,7 +37,8 @@ export default function ProductsPage() {
             ))}
           </div>
 
-          <div className="mt-10 border border-dashed border-line bg-paper p-8 text-center">
+          {/* Custom solutions */}
+          <div className="mt-10 rounded-sm border border-dashed border-line-strong bg-surface shadow-card p-8 text-center">
             <p className="mono-label">Custom engineered solutions</p>
             <h3 className="display-tight mx-auto mt-2 max-w-xl text-2xl text-ink">
               Every project has unique requirements. We design, modify, and manufacture to spec.

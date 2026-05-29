@@ -18,7 +18,7 @@ export default function ContactPage() {
   return (
     <>
       <section className="blueprint text-white">
-        <div className="h-1.5 w-full safety-stripes" />
+        <div className="h-[3px] w-full safety-stripes" />
         <div className="container-x py-16 md:py-20">
           <SectionHeading
             light
@@ -30,7 +30,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-white">
+      <section className="border-t border-line bg-paper">
         <div className="container-x grid gap-10 py-16 md:grid-cols-12 md:py-20">
           {/* Quick contact */}
           <div className="md:col-span-5">
@@ -39,33 +39,38 @@ export default function ContactPage() {
                 <a
                   key={p}
                   href={telLink(p)}
-                  className="flex items-center justify-between border border-line bg-paper px-5 py-4 transition-colors hover:border-ink"
+                  className="flex items-center justify-between bg-surface shadow-card hover:shadow-card-md rounded-sm px-5 py-4 transition-all group"
                 >
                   <span className="mono-label">Call</span>
-                  <span className="font-display text-lg font-bold text-ink">{company.contact.phones[i]}</span>
+                  <span className="font-display text-lg font-bold text-ink group-hover:text-brand transition-colors">
+                    {company.contact.phones[i]}
+                  </span>
                 </a>
               ))}
               <a
                 href={waLink("Hello S.S. Engineers, I'd like to enquire.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between border border-brand bg-brand-tint px-5 py-4 transition-colors hover:bg-brand hover:text-white"
+                className="flex items-center justify-between bg-brand-tint border border-brand/20 hover:bg-brand hover:border-brand hover:text-white rounded-sm px-5 py-4 transition-all group"
               >
-                <span className="mono-label">WhatsApp</span>
-                <span className="font-display text-lg font-bold">Chat now</span>
+                <span className="mono-label group-hover:!text-white/70">WhatsApp</span>
+                <span className="font-display text-lg font-bold text-brand group-hover:text-white transition-colors">
+                  Chat now
+                </span>
               </a>
               <a
                 href={mailLink("Product enquiry")}
-                className="flex items-center justify-between border border-line bg-paper px-5 py-4 transition-colors hover:border-ink"
+                className="flex items-center justify-between bg-surface shadow-card hover:shadow-card-md rounded-sm px-5 py-4 transition-all group"
               >
                 <span className="mono-label">Email</span>
-                <span className="break-all font-display text-base font-bold text-ink">
+                <span className="break-all font-display text-base font-bold text-ink group-hover:text-brand transition-colors">
                   {company.contact.email}
                 </span>
               </a>
             </div>
 
-            <div className="mt-6 border border-line p-6">
+            {/* Address */}
+            <div className="mt-4 bg-surface shadow-card rounded-sm p-6">
               <p className="mono-label">Office & factory</p>
               <address className="mt-3 not-italic text-sm leading-relaxed text-ink-soft">
                 {company.contact.address.lines.map((l) => (
@@ -76,11 +81,11 @@ export default function ContactPage() {
               </address>
               <div className="mt-4 flex flex-wrap gap-x-8 gap-y-2 border-t border-line pt-4 text-sm text-ink-soft">
                 <span>
-                  <span className="mono-label block">Service area</span>
+                  <span className="mono-label block mb-1">Service area</span>
                   {company.contact.serviceArea}
                 </span>
                 <span>
-                  <span className="mono-label block">Hours</span>
+                  <span className="mono-label block mb-1">Hours</span>
                   {company.contact.hours}
                 </span>
               </div>

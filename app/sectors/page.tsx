@@ -14,7 +14,7 @@ export default function SectorsPage() {
   return (
     <>
       <section className="blueprint text-white">
-        <div className="h-1.5 w-full safety-stripes" />
+        <div className="h-[3px] w-full safety-stripes" />
         <div className="container-x py-16 md:py-24">
           <SectionHeading
             light
@@ -26,27 +26,27 @@ export default function SectorsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-white">
+      <section className="border-t border-line bg-paper">
         <div className="container-x py-16 md:py-24">
-          <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {company.sectors.map((s, i) => (
               <Reveal key={s} delay={(i % 3) * 50}>
-                <div className="flex items-center gap-4 bg-white p-7">
-                  <span className="font-mono text-[12px] tracking-[0.18em] text-amber">
+                <div className="flex items-center gap-4 bg-surface shadow-card hover:shadow-card-md transition-shadow rounded-sm p-6">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded bg-brand-tint font-mono text-[11px] tracking-[0.14em] text-brand">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-display text-lg font-bold text-ink">{s}</span>
+                  <span className="font-display text-base font-bold text-ink">{s}</span>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          <div className="mt-10 border border-dashed border-line bg-paper p-8">
+          <div className="mt-10 rounded-sm border border-line bg-surface shadow-card p-8">
             <p className="mono-label">Clients</p>
-            <p className="mt-2 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              We have completed projects for government schemes, municipal bodies, gram panchayats, and private
-              townships. For client references and project details, please{" "}
-              <a href="/contact" className="font-medium text-brand underline underline-offset-2">
+            <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
+              We have completed projects for government schemes, municipal bodies, gram panchayats,
+              and private townships. For client references and project details, please{" "}
+              <a href="/contact" className="font-semibold text-brand hover:underline underline-offset-2">
                 contact us
               </a>
               .

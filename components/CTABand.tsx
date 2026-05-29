@@ -10,11 +10,29 @@ export default function CTABand({
   subtitle?: string;
 }) {
   return (
-    <section className="bg-brand-deep text-white">
-      <div className="container-x grid items-center gap-8 py-14 md:grid-cols-2">
+    <section className="relative overflow-hidden bg-brand-deep text-white">
+      {/* Subtle grid overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Glow */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 80% at 80% 50%, rgba(15,122,60,0.25) 0%, transparent 65%)",
+        }}
+      />
+
+      <div className="container-x relative grid items-center gap-8 py-14 md:grid-cols-2">
         <div>
           <h2 className="display-tight text-3xl sm:text-4xl">{title}</h2>
-          <p className="mt-4 max-w-md text-white/75">{subtitle}</p>
+          <p className="mt-4 max-w-md text-white/70 text-[15px] leading-relaxed">{subtitle}</p>
         </div>
         <div className="flex flex-wrap gap-3 md:justify-end">
           <a

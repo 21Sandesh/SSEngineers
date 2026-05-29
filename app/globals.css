@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --grid-line: rgba(22, 24, 29, 0.05);
+  --grid-line: rgba(10, 15, 30, 0.05);
 }
 
 html {
@@ -18,72 +18,92 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(10,15,30,0.18); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(10,15,30,0.32); }
+
 @layer components {
   .container-x {
     @apply mx-auto w-full max-w-container px-5 sm:px-8;
   }
 
-  /* Monospace technical label used across section headers, indices, spec rows */
+  /* Technical label — mono, small caps */
   .mono-label {
-    @apply font-mono text-[11px] uppercase tracking-[0.22em] text-steel;
+    @apply font-mono text-[10px] uppercase tracking-[0.20em] text-ink-muted;
   }
 
   .display-tight {
     @apply font-display font-extrabold tracking-[-0.02em] leading-[0.98];
   }
 
+  /* ─── Buttons ─────────────────────────────────────────── */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 font-mono text-[12px]
-      uppercase tracking-[0.14em] transition-all duration-200 px-6 py-3.5;
+    @apply inline-flex items-center justify-center gap-2 font-semibold text-[13px]
+      tracking-[-0.01em] transition-all duration-200 px-5 py-3 rounded;
   }
   .btn-primary {
-    @apply btn bg-brand text-white hover:bg-brand-deep;
+    @apply btn bg-brand text-white shadow-sm hover:bg-brand-mid hover:shadow-card
+      active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40;
   }
   .btn-amber {
-    @apply btn bg-amber text-ink hover:bg-amber-deep hover:text-white;
+    @apply btn bg-amber text-white shadow-sm hover:bg-amber-deep hover:shadow-card
+      active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber/40;
   }
   .btn-ghost {
-    @apply btn border border-line text-ink hover:border-ink hover:bg-ink hover:text-paper;
+    @apply btn border border-line-strong text-ink-soft hover:border-ink hover:bg-ink
+      hover:text-white active:scale-[0.98] focus-visible:outline-none;
   }
   .btn-ghost-light {
-    @apply btn border border-white/30 text-white hover:bg-white hover:text-ink;
+    @apply btn border border-white/25 text-white hover:bg-white hover:text-ink
+      active:scale-[0.98] focus-visible:outline-none;
   }
 }
 
-/* Blueprint grid background for dark hero / sections */
+/* ─── Dark hero / footer background ──────────────────────────── */
 .blueprint {
-  background-color: theme("colors.ink");
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 46px 46px;
+  background: linear-gradient(150deg, #0A0F1E 0%, #0F1829 55%, #111E33 100%);
+  position: relative;
 }
 
-/* Hi-vis diagonal safety stripes */
+.blueprint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ─── Accent gradient stripe (replaces raw safety stripes) ───── */
 .safety-stripes {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    theme("colors.amber.DEFAULT") 0,
-    theme("colors.amber.DEFAULT") 12px,
-    theme("colors.ink") 12px,
-    theme("colors.ink") 24px
+  background: linear-gradient(
+    90deg,
+    theme("colors.brand.DEFAULT") 0%,
+    theme("colors.brand.mid") 40%,
+    theme("colors.amber.DEFAULT") 75%,
+    theme("colors.amber.deep") 100%
   );
 }
 
-/* Subtle paper grid for light sections */
+/* ─── Subtle paper grid for light sections ─────────────────── */
 .paper-grid {
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 46px 46px;
+  background-size: 48px 48px;
 }
 
-/* Scroll reveal */
+/* ─── Scroll reveal ──────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.is-visible {
   opacity: 1;
