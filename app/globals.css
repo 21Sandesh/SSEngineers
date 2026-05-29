@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --grid-line: rgba(22, 24, 29, 0.05);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: theme("colors.paper");
+  color: theme("colors.ink");
+  font-family: theme("fontFamily.body");
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8;
+  }
+
+  /* Monospace technical label used across section headers, indices, spec rows */
+  .mono-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.22em] text-steel;
+  }
+
+  .display-tight {
+    @apply font-display font-extrabold tracking-[-0.02em] leading-[0.98];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-mono text-[12px]
+      uppercase tracking-[0.14em] transition-all duration-200 px-6 py-3.5;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-deep;
+  }
+  .btn-amber {
+    @apply btn bg-amber text-ink hover:bg-amber-deep hover:text-white;
+  }
+  .btn-ghost {
+    @apply btn border border-line text-ink hover:border-ink hover:bg-ink hover:text-paper;
+  }
+  .btn-ghost-light {
+    @apply btn border border-white/30 text-white hover:bg-white hover:text-ink;
+  }
+}
+
+/* Blueprint grid background for dark hero / sections */
+.blueprint {
+  background-color: theme("colors.ink");
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+/* Hi-vis diagonal safety stripes */
+.safety-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    theme("colors.amber.DEFAULT") 0,
+    theme("colors.amber.DEFAULT") 12px,
+    theme("colors.ink") 12px,
+    theme("colors.ink") 24px
+  );
+}
+
+/* Subtle paper grid for light sections */
+.paper-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
