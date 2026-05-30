@@ -1,4 +1,5 @@
 import SectionCard from "@/components/admin/SectionCard";
+import DangerZone from "@/components/admin/DangerZone";
 
 export const dynamic = "force-dynamic";
 
@@ -78,6 +79,8 @@ export default function AdminSettingsPage() {
           By default, all analytics data is retained indefinitely. To purge old data, call <code className="rounded bg-paper px-1.5 py-0.5 text-xs">pruneOldData(days)</code> from a scheduled job (recommended: keep 365 days).
         </p>
       </SectionCard>
+
+      <DangerZone />
     </div>
   );
 }
