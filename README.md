@@ -20,8 +20,33 @@ npm start        # serve the build
 
 1. Push this folder to a GitHub repo.
 2. Import it at vercel.com → it auto-detects Next.js, no config needed.
-3. Add your custom domain in Vercel → Settings → Domains.
-4. Update `SITE_URL` in `data/company.ts` to your real domain (used for SEO + sitemap).
+3. **Storage → Create database → Postgres** (Neon-backed, free tier). Vercel auto-injects `POSTGRES_URL` and friends.
+4. **Settings → Environment Variables** — add:
+   - `ADMIN_PASSWORD` — your chosen admin password (used to log into `/admin`)
+   - `ADMIN_COOKIE_SECRET` — a 32+ character random string (used to sign the admin session cookie)
+   - `NEXT_PUBLIC_CLARITY_ID` — *optional*, your Microsoft Clarity project ID for heatmaps/recordings
+5. Redeploy. Then run the database migration once:
+   ```bash
+   # locally, with POSTGRES_URL pointing at the Vercel-provisioned DB
+   npm run db:migrate
+   ```
+   (or open Vercel Postgres → Query and paste the contents of `drizzle/0000_init.sql`)
+6. Add your custom domain in Vercel → Settings → Domains.
+7. Update `SITE_URL` in `data/company.ts` to your real domain (used for SEO + sitemap).
+
+> **Heads-up:** the old GitHub Pages workflow (`.github/workflows/nextjs.yml`) is disabled. GitHub Pages is static-only and cannot run the analytics + admin server functions.
+
+## Admin analytics
+
+Visit `/admin/login` and enter the `ADMIN_PASSWORD`. You get:
+
+- **Overview** — visitors / sessions / pageviews / clicks / submits, daily chart, top pages, top CTAs, referrers, countries, devices, browsers
+- **Visitors** — every session with location, device, landing page, referrer; click into a session for full timeline (every pageview, click, scroll, form step)
+- **Products** — most-viewed products and categories
+- **Funnel** — `/contact` visit → form started → 2+ fields filled → submit attempt → submit success, with drop-off %
+- **Settings** — CSV export (sessions and events), links to Vercel Analytics + Microsoft Clarity
+
+Visitors see a consent banner on first load. Accept = full tracking (IP + Clarity); reject = anonymous pageviews only (IP truncated, no Clarity).
 
 ## Editing content — no code knowledge needed
 

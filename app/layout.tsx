@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Archivo, Public_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Tracker from "@/components/Tracker";
+import ConsentBanner from "@/components/ConsentBanner";
+import Clarity from "@/components/Clarity";
 import { company, SITE_URL } from "@/data/company";
 
 const archivo = Archivo({
@@ -52,12 +56,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
   return (
     <html lang="en">
       <body className={`${archivo.variable} ${publicSans.variable} ${plexMono.variable} font-body`}>
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Suspense fallback={null}>
+          <Tracker />
+        </Suspense>
+        <ConsentBanner />
+        {clarityId ? <Clarity projectId={clarityId} /> : null}
       </body>
     </html>
   );

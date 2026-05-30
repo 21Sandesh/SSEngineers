@@ -1,15 +1,12 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
+# NOTE: This workflow is disabled. The site is now deployed to Vercel
+# (server functions, Postgres, /admin analytics require a Node runtime
+# that GitHub Pages cannot provide). Manual trigger left in place so the
+# workflow can still be inspected.
 #
-# To get started with Next.js see: https://nextjs.org/docs/getting-started
-#
-name: Deploy Next.js site to Pages
+name: Deploy Next.js site to Pages (disabled)
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Push trigger disabled — Vercel is the production target now.
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages

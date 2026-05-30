@@ -45,6 +45,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className="rounded px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-paper hover:text-ink"
+              data-track={`nav:${item.label.toLowerCase()}`}
             >
               {item.label}
             </Link>
@@ -55,6 +56,7 @@ export default function Navbar() {
               className="btn-amber"
               target="_blank"
               rel="noopener noreferrer"
+              data-track="cta:nav-enquire"
             >
               Enquire
             </a>
@@ -95,6 +97,7 @@ export default function Navbar() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="rounded px-3 py-2.5 text-sm font-medium text-ink-soft hover:bg-paper hover:text-ink transition-colors"
+                data-track={`nav-mobile:${item.label.toLowerCase()}`}
               >
                 {item.label}
               </Link>
@@ -106,6 +109,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
+                data-track="cta:nav-mobile-whatsapp"
               >
                 Enquire on WhatsApp
               </a>

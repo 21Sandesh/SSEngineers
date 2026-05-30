@@ -40,13 +40,18 @@ export default function CTABand({
             target="_blank"
             rel="noopener noreferrer"
             className="btn-amber"
+            data-track="cta:band-whatsapp"
           >
             WhatsApp us
           </a>
-          <a href={telLink(company.contact.phonesRaw[0])} className="btn-ghost-light">
+          <a
+            href={telLink(company.contact.phonesRaw[0])}
+            className="btn-ghost-light"
+            data-track="cta:band-call"
+          >
             Call now
           </a>
-          <Link href="/contact" className="btn-ghost-light">
+          <Link href="/contact" className="btn-ghost-light" data-track="cta:band-request-quote">
             Request a quote
           </Link>
         </div>

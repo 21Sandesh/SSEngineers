@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { categories } from "@/data/categories";
 import { waLink } from "@/lib/utils";
+import { track } from "@/lib/track";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const fieldsTouched = useRef<Set<string>>(new Set());
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -19,11 +21,16 @@ export default function ContactForm() {
 
   function update(key: keyof typeof form, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
+    if (!fieldsTouched.current.has(key)) {
+      fieldsTouched.current.add(key);
+      track({ type: "form_step", payload: { field: key } });
+    }
   }
 
   async function handleSubmit() {
     if (!form.name || !form.phone) {
       setStatus("error");
+      track({ type: "form_submit", payload: { outcome: "validation_error" } });
       return;
     }
     setStatus("sending");
@@ -35,9 +42,12 @@ export default function ContactForm() {
       });
       if (!res.ok) throw new Error("failed");
       setStatus("sent");
+      track({ type: "form_submit", payload: { outcome: "success", interest: form.interest } });
       setForm({ name: "", phone: "", email: "", organization: "", interest: "", message: "" });
+      fieldsTouched.current = new Set();
     } catch {
       setStatus("error");
+      track({ type: "form_submit", payload: { outcome: "error" } });
     }
   }
 
@@ -147,10 +157,17 @@ export default function ContactForm() {
           onClick={handleSubmit}
           disabled={status === "sending"}
           className="btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
+          data-track="cta:contact-submit"
         >
           {status === "sending" ? "Sending…" : "Send enquiry"}
         </button>
-        <a href={whatsappFallback} target="_blank" rel="noopener noreferrer" className="btn-amber">
+        <a
+          href={whatsappFallback}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-amber"
+          data-track="cta:contact-whatsapp"
+        >
           Send on WhatsApp
         </a>
       </div>

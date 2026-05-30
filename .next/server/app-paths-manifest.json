@@ -1,4 +1,10 @@
 {
   "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js"
+  "/api/admin/login/route": "app/api/admin/login/route.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/products/page": "app/admin/products/page.js",
+  "/admin/visitors/page": "app/admin/visitors/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/funnel/page": "app/admin/funnel/page.js",
+  "/admin/settings/page": "app/admin/settings/page.js"
 }

@@ -10,6 +10,8 @@ export default function CategoryCard({ category }: { category: Category }) {
     <Link
       href={`/products/${category.slug}`}
       className="group relative flex flex-col justify-between bg-surface p-6 shadow-card hover:shadow-card-md hover:-translate-y-0.5 transition-all duration-300"
+      data-track={`category:${category.slug}`}
+      data-track-name={category.name}
     >
       {/* Top row */}
       <div className="flex items-start justify-between">

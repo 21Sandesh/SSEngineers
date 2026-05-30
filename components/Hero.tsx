@@ -44,10 +44,10 @@ export default function Hero() {
           className="mt-8 flex flex-wrap gap-3 animate-fade-up"
           style={{ animationDelay: "240ms" }}
         >
-          <Link href="/products" className="btn-amber">
+          <Link href="/products" className="btn-amber" data-track="cta:hero-explore-products">
             Explore products
           </Link>
-          <Link href="/contact" className="btn-ghost-light">
+          <Link href="/contact" className="btn-ghost-light" data-track="cta:hero-request-quote">
             Request a quote
           </Link>
           <a
@@ -55,6 +55,7 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-ghost-light"
+            data-track="cta:hero-whatsapp"
           >
             WhatsApp us
           </a>

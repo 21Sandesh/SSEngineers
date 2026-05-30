@@ -13,6 +13,9 @@ export default function ProductCard({
     <Link
       href={`/products/${product.categorySlug}/${product.slug}`}
       className="group flex flex-col bg-surface shadow-card hover:shadow-card-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
+      data-track={`product:${product.slug}`}
+      data-track-category={product.categorySlug}
+      data-track-name={product.name}
     >
       <ProductImage
         src={product.images[0]}

@@ -76,13 +76,22 @@ export default function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-white/60">
             {company.contact.phonesRaw.map((p, i) => (
               <li key={p}>
-                <a href={telLink(p)} className="hover:text-amber transition-colors">
+                <a
+                  href={telLink(p)}
+                  className="hover:text-amber transition-colors"
+                  data-track="contact:footer-phone"
+                  data-track-phone={p}
+                >
                   {company.contact.phones[i]}
                 </a>
               </li>
             ))}
             <li>
-              <a href={mailLink()} className="break-all hover:text-amber transition-colors">
+              <a
+                href={mailLink()}
+                className="break-all hover:text-amber transition-colors"
+                data-track="contact:footer-email"
+              >
                 {company.contact.email}
               </a>
             </li>
@@ -97,9 +106,14 @@ export default function Footer() {
           <span>
             © {new Date().getFullYear()} {company.name}. All rights reserved.
           </span>
-          <span className="font-mono uppercase tracking-[0.16em]">
-            MSME · ISO · Pan-India
-          </span>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-amber transition-colors">
+              Privacy
+            </Link>
+            <span className="font-mono uppercase tracking-[0.16em]">
+              MSME · ISO · Pan-India
+            </span>
+          </div>
         </div>
       </div>
     </footer>
